@@ -7,12 +7,12 @@ typedef struct _ast
     enum {
         AST_VARIABLE_DEFINITION,
         AST_VARIABLE,
-        AST_CONSTANT,
         AST_FUNCTION_CALL,
         AST_STRING,
         AST_COMPOUND,
         AST_NOOP,
         // TODO(lluz) implement bellow
+        AST_CONSTANT,
         // Comptime function
         AST_COMP_TIME_FUNCTION,
         AST_COMP_TIME_CALL,
@@ -30,7 +30,7 @@ typedef struct _ast
     
     // Function call
     char *function_call_name;
-    struct _ast *function_call_args;
+    struct _ast **function_call_args;
     size_t function_call_args_size;
 
     // Strings

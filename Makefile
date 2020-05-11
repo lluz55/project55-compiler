@@ -1,13 +1,15 @@
+CFLAGS = -g
+
 exec = pr55.out
 sources = $(wildcard src/*.c)
 objects = $(sources:.c=.o)
-flats = -g
+flags = -g
 
 $(exec): $(objects)
-	gcc $(objects) $(flags) -o $(exec)
+	gcc $(objects) -o $(exec)
 
 
-%.o: %;c include/%.h
+%.o: %;-g include/%.h
 	gcc -c $(flags) $< -o $@
 
 install:

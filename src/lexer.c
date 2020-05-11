@@ -19,6 +19,7 @@ void lexer_advance(lexer_t *lexer){
     if(lexer->current_char != '\0' && lexer->index < strlen(lexer->content)){
         lexer->index += 1;
         lexer->current_char = lexer->content[lexer->index];
+    } else {
     }
 }
 
@@ -67,25 +68,20 @@ token_t *lexer_get_next_token(lexer_t *lexer){
         {
         case '=':
             return lexer_advance_with_token(lexer, init_token(TOKEN_EQUALS, lexer_get_current_char_as_string(lexer)));
-            break;
         case ':':
             return lexer_advance_with_token(lexer, init_token(TOKEN_COLON, lexer_get_current_char_as_string(lexer)));
-            break;
         case ';':
             return lexer_advance_with_token(lexer, init_token(TOKEN_SEMI, lexer_get_current_char_as_string(lexer)));
-            break;
+        case ',':
+            return lexer_advance_with_token(lexer, init_token(TOKEN_COMMA, lexer_get_current_char_as_string(lexer)));
         case '(':
             return lexer_advance_with_token(lexer, init_token(TOKEN_LPAREN, lexer_get_current_char_as_string(lexer)));
-            break;
         case ')':
             return lexer_advance_with_token(lexer, init_token(TOKEN_RPAREN, lexer_get_current_char_as_string(lexer)));
-            break;
         case '{':
             return lexer_advance_with_token(lexer, init_token(TOKEN_LCURL, lexer_get_current_char_as_string(lexer)));
-            break;
         case '}':
             return lexer_advance_with_token(lexer, init_token(TOKEN_RCURL, lexer_get_current_char_as_string(lexer)));
-            break;
         // case '\n':
         //     return lexer_advance_with_token(lexer, init_token(TOKEN_NEW_LINE, lexer_get_current_char_as_string(lexer)));
         //     break;            
@@ -93,8 +89,7 @@ token_t *lexer_get_next_token(lexer_t *lexer){
             break;
         }
     }
-    return (void *)0;
-    
+    return init_token(TOKEN_EOF, "\0");    
 }
 
 token_t *lexer_collect_string(lexer_t *lexer){

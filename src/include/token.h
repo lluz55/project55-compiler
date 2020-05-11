@@ -15,6 +15,8 @@ typedef struct _token
         TOKEN_RCURL,    // 6
         TOKEN_COLON,    // 7
         TOKEN_SEMI,     // 8
+        TOKEN_COMMA,    // 9
+        TOKEN_EOF,      // 10
     } type;
 
     char *value;
